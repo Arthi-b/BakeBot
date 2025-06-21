@@ -26,27 +26,6 @@
 
 ---
 
-## 📦 Project Structure
-BakeBot/
-├── frontend/
-│ ├── index.html
-│ ├── script.js
-│ └── style.css
-├── backend/
-│ ├── app.py
-│ ├── predictor.py
-│ ├── model/
-│ │ ├── model.pkl
-│ │ └── vectorizer.pkl
-├── data/
-│ └── recipes.csv
-├── .gitignore
-├── requirements.txt
-└── README.md
-
-
----
-
 ## How It Works
 
 1. User enters ingredients (e.g., "almond flour, maple syrup, egg")
