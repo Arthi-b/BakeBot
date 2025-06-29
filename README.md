@@ -42,7 +42,6 @@
    
 2. Install Dependencies
    ```bash
-   cd backend
    pip install -r requirements.txt
    
 4. Create a .env file in the backend directory with your OpenAI API key:
