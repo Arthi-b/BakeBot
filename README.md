@@ -33,6 +33,30 @@
    - An explanation (`"Has enough structure and binder"`)
    - The source (`"llm"`)
 
+### Backend Setup
+1. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+2. Install Dependencies
+   cd backend
+   pip install -r requirements.txt
+   
+4. Create a .env file in the backend directory with your OpenAI API key:
+   OPENAI_API_KEY=your_api_key_here
+   
+6. Run the Flask server
+   python app.py
+
+### Frontend Setup
+1. Open the frontend directory in your browser or use a local server:
+   cd frontend
+   python -m http.server 8000
+3. Open http://localhost:8000 in your browser.
+
+
+
 Built by Arthi Bhoomireddy
 
 
