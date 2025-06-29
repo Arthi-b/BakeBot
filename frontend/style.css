@@ -1,1 +1,123 @@
+:root {
+    --primary-color: #ffebee;
+    --secondary-color: #ffcdd2;
+    --accent-color: #ef9a9a;
+    --text-color: #5d4037;
+    --button-color: #424242;
+    --button-text: #ffffff;
+}
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+h1 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.dessert-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.dessert-card {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dessert-card:hover {
+    transform: translateY(-10px);
+}
+
+.dessert-card h2 {
+    margin-top: 1rem;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.nav-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-button.active {
+    background-color: var(--accent-color);
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--button-color);
+    color: var(--button-text);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #212121;
+}
+
+.result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .dessert-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}

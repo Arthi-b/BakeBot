@@ -1,1 +1,28 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will It Brownie? - BakeBot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <button class="nav-button" data-target="cookie">COOKIE</button>
+            <button class="nav-button" data-target="cake">CAKE</button>
+            <button class="nav-button active" data-target="brownie">BROWNIE</button>
+        </div>
+        
+        <h1>WILL IT BROWNIE?</h1>
+        
+        <textarea placeholder="Enter one ingredient per line..."></textarea>
+        
+        <button id="check-button">CHECK</button>
+        
+        <div class="result" style="display: none;"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
