@@ -46,6 +46,7 @@
    pip install -r requirements.txt
    
 4. Create a .env file in the backend directory with your OpenAI API key:
+   ```bash
    OPENAI_API_KEY=your_api_key_here
    
 6. Run the Flask server
