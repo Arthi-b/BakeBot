@@ -8,7 +8,6 @@
 
 - Input a custom list of ingredients
 - Uses an LLM (GPT) to evaluate recipe success
-- Falls back to a trained ML model if LLM is uncertain
 - Provides explanations and suggestions for improvement
 - Frontend + Flask backend architecture
 
@@ -21,7 +20,6 @@
 | Frontend     | HTML, CSS, JavaScript         |
 | Backend      | Python, Flask, Flask-CORS     |
 | AI Core      | OpenAI GPT-3.5/4 API (LLM)     |
-| ML Fallback  | Scikit-learn (Logistic Regression) |
 | Dev Tools    | Git, VS Code, Postman, Vercel/Render (deployment)
 
 ---
@@ -30,11 +28,10 @@
 
 1. User enters ingredients (e.g., "almond flour, maple syrup, egg")
 2. BakeBot sends a prompt to the LLM asking if the recipe will turn out as a cookie
-3. If the LLM returns low confidence or "unsure", the fallback ML model predicts the texture class
 4. The backend returns:
    - A verdict (`"will bake as cookie"`)
    - An explanation (`"Has enough structure and binder"`)
-   - The source (`"llm"` or `"ml"`)
+   - The source (`"llm"`)
 
 Built by Arthi Bhoomireddy
 
