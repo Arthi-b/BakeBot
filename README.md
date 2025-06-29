@@ -37,9 +37,11 @@
 1. Create and activate a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate
+   # On Windows: venv\Scripts\activate
    
 2. Install Dependencies
+   ```bash
    cd backend
    pip install -r requirements.txt
    
@@ -47,12 +49,15 @@
    OPENAI_API_KEY=your_api_key_here
    
 6. Run the Flask server
-   python app.py
+   ```bash
+   python app.py 
 
 ### Frontend Setup
 1. Open the frontend directory in your browser or use a local server:
+   ```bash
    cd frontend
    python -m http.server 8000
+   
 3. Open http://localhost:8000 in your browser.
 
 
