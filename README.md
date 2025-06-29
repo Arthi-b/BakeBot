@@ -20,7 +20,7 @@
 | Frontend     | HTML, CSS, JavaScript         |
 | Backend      | Python, Flask, Flask-CORS     |
 | AI Core      | OpenAI GPT-3.5/4 API (LLM)     |
-| Dev Tools    | Git, VS Code, Postman, Vercel/Render (deployment)
+| Dev Tools    | Git, VS Code
 
 ---
 
