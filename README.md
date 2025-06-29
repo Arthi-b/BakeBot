@@ -1,4 +1,4 @@
-# BakeBot 🧁 🍪 🍰
+# BakeBot 🍪 🍰 🍫
  
 **BakeBot** is an AI-powered baking assistant that tells you whether your dessert recipe will work and what to fix if it won’t. Whether you're trying to make a protein cookie or a low-carb cake, BakeBot analyzes your ingredients and predicts whether the recipe will turn out with the right texture (cookie-like, cake-like, etc.).
 
