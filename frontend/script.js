@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             checkButton.disabled = true;
             checkButton.textContent = 'Analyzing...';
 
-            fetch('https://bakebot-backend.onrender.com', {
+            fetch("https://bakebot-backend.onrender.com/predict", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
