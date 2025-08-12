@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
             const target = this.dataset.target;
-            window.location.href = `${target}.html`;
+            window.location.href = `/${target}.html`;
         });
     });
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             checkButton.disabled = true;
             checkButton.textContent = 'Analyzing...';
 
-            fetch("https://bakebot-backend.onrender.com/predict", {
+            fetch("/predict", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,10 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     resultDiv.innerHTML = `<p>${data.analysis}</p>`;
                 }
+                resultDiv.style.display = 'block';
             })
             .catch(error => {
                 const resultDiv = document.querySelector('.result');
                 resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                resultDiv.style.display = 'block';
             })
             .finally(() => {
                 checkButton.disabled = false;

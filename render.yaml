@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: bakebot
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python backend/app.py
+    env: python
+    staticDir: frontend/
+    envVars:
+      - key: OPENAI_API_KEY
+        fromGroup: bakebot-env
