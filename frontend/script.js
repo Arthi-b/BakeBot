@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
             const target = this.dataset.target;
-            window.location.href = `/${target}.html`;
+            window.location.href = `${target}.html`;
         });
     });
 
     // Check button functionality
     const checkButton = document.getElementById('check-button');
     if (checkButton) {
-        checkButton.addEventListener('click', function() {
+        checkButton.addEventListener('click', async function() {
             const textarea = document.querySelector('textarea');
             const ingredients = textarea.value.split('\n').filter(ing => ing.trim() !== '');
             const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
@@ -23,41 +23,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
             checkButton.disabled = true;
             checkButton.textContent = 'Analyzing...';
+            
+            const resultDiv = document.querySelector('.result');
+            resultDiv.style.display = 'none';
 
-            fetch("/predict", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ingredients: ingredients,
-                    desired_texture: currentPage
-                }),
-            })
-            .then(response => {
+            try {
+                const response = await fetch("/predict", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ingredients: ingredients,
+                        desired_texture: currentPage
+                    }),
+                });
+
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `Server responded with ${response.status}`);
                 }
-                return response.json();
-            })
-            .then(data => {
-                const resultDiv = document.querySelector('.result');
-                if (data.error) {
-                    resultDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
-                } else {
-                    resultDiv.innerHTML = `<p>${data.analysis}</p>`;
-                }
+
+                const data = await response.json();
+                resultDiv.innerHTML = `<p>${data.analysis}</p>`;
                 resultDiv.style.display = 'block';
-            })
-            .catch(error => {
-                const resultDiv = document.querySelector('.result');
+                
+            } catch (error) {
+                console.error('Fetch error:', error);
                 resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
                 resultDiv.style.display = 'block';
-            })
-            .finally(() => {
+            } finally {
                 checkButton.disabled = false;
                 checkButton.textContent = 'CHECK';
-            });
+            }
         });
     }
 });
