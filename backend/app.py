@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
 CORS(app)
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def generate_prompt(ingredients, desired_texture):
     return f"""You are an expert pastry chef and baking scientist.
@@ -39,7 +39,7 @@ def predict():
     prompt = generate_prompt(ingredients, desired_texture)
     
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a professional pastry chef."},
@@ -66,4 +66,4 @@ def serve_static(path):
     return app.send_static_file(path)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    app.run(host='0.0.0.0', port=10000, debug=True)

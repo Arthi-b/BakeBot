@@ -34,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     desired_texture: currentPage
                 }),
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 const resultDiv = document.querySelector('.result');
                 if (data.error) {
