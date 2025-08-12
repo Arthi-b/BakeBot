@@ -7,7 +7,8 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+# Allow requests from the deployed Vercel frontend
+CORS(app, origins=["https://bakebot.vercel.app"])
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -27,17 +28,21 @@ Based on these ingredients:
 
 Respond with a clear and concise analysis in one friendly paragraph."""
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
+    # Handle CORS preflight request
+    if request.method == 'OPTIONS':
+        return '', 200
+
     data = request.json
     ingredients = data.get('ingredients', [])
     desired_texture = data.get('desired_texture', 'cookie')
-    
+
     if not ingredients:
         return jsonify({"error": "No ingredients provided"}), 400
-    
+
     prompt = generate_prompt(ingredients, desired_texture)
-    
+
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4",
@@ -48,12 +53,18 @@ def predict():
             temperature=0.7,
             max_tokens=256
         )
-        
+
         analysis = response.choices[0].message.content
         return jsonify({"analysis": analysis})
-    
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/', methods=['GET'])
+def index():
+    """Simple health-check endpoint."""
+    return jsonify({"status": "ok"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
